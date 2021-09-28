@@ -1,5 +1,6 @@
 package com.trung.cuahangonline.activity;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -8,11 +9,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ViewFlipper;
@@ -68,12 +71,80 @@ public class MainActivity extends AppCompatActivity {
             ActionViewFlipper();
             getdulieuloaisp();
             getdulieusanphammoinhat();
+            CatchOnitemListView();
 
         }
         else{
             CheckConnection.showToast_short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
             finish();
         }
+    }
+
+    private void CatchOnitemListView() {
+        listViewmanhinhchinh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0:
+                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                            startActivity(intent);
+                        }else {
+                            CheckConnection.showToast_short(getApplicationContext(),"Bạn hãy kiểm tra kết nối ");
+
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 1:
+                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent = new Intent(MainActivity.this,DonghoCasioActivity.class);
+                            intent.putExtra("idloaisanpham", mangloaisp.get(i).getId());
+                            startActivity(intent);
+                        }else {
+                            CheckConnection.showToast_short(getApplicationContext(),"Bạn hãy kiểm tra kết nối ");
+
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 2 :
+                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent = new Intent(MainActivity.this,DonghoOpActivity.class);
+                            intent.putExtra("idloaisanpham", mangloaisp.get(i).getId());
+                            startActivity(intent);
+                        }else {
+                            CheckConnection.showToast_short(getApplicationContext(),"Bạn hãy kiểm tra kết nối ");
+
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 3:
+                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent = new Intent(MainActivity.this,LienheActivity.class);
+                            intent.putExtra("idloaisanpham", mangloaisp.get(i).getId());
+                            startActivity(intent);
+                        }else {
+                            CheckConnection.showToast_short(getApplicationContext(),"Bạn hãy kiểm tra kết nối ");
+
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 4:
+                        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+                            Intent intent = new Intent(MainActivity.this,ThongtinActivity.class);
+                            intent.putExtra("idloaisanpham", mangloaisp.get(i).getId());
+                            startActivity(intent);
+                        }else {
+                            CheckConnection.showToast_short(getApplicationContext(),"Bạn hãy kiểm tra kết nối ");
+
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+
+
+                }
+            }
+        });
     }
 
     private void getdulieusanphammoinhat() {
