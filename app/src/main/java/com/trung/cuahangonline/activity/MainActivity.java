@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -23,7 +26,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 import com.trung.cuahangonline.R;
 import com.trung.cuahangonline.adapter.LoaispAdapter;
+import com.trung.cuahangonline.adapter.SanphamAdapter;
 import com.trung.cuahangonline.model.LoaiSP;
+import com.trung.cuahangonline.model.Sanpham;
 import com.trung.cuahangonline.utils.CheckConnection;
 import com.trung.cuahangonline.utils.Server;
 
@@ -46,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
     String tenloaisp="";
     String hinhanhloaisp="";
 
-
+    ArrayList<Sanpham> mangsanpham;
+    SanphamAdapter sanphamAdapter;
 
 
     @Override
@@ -62,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             ActionViewFlipper();
             getdulieuloaisp();
             getdulieusanphammoinhat();
-            CatchOnItemListView();
+
         }
         else{
             CheckConnection.showToast_short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
@@ -70,14 +76,48 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
-    private void CatchOnItemListView() {
-
-    }
-
     private void getdulieusanphammoinhat() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        JsonArrayRequest jsonArrayRequest =new JsonArrayRequest(Server.duongdansanphammoinhat, new Response.Listener<JSONArray>() {
 
+
+           @SuppressLint("NotifyDataSetChanged")
+           @Override
+           public void onResponse(JSONArray response) {
+               if(response!=null)//neu du lieu json ton tai
+               {   int ID =  0;
+                   String Tensanpham="";
+                   Integer Giasanpham =0;
+                   String Hinhanhsanpham="";
+                   String Motasanpham="";
+                   int IDsanpham= 0;
+                   for(int i =0; i<response.length();i++){
+                       try {
+                           JSONObject jsonObject= response.getJSONObject(i);
+                           ID = jsonObject.getInt("id");
+                           Tensanpham= jsonObject.getString("tensp");
+                           Giasanpham=jsonObject.getInt("giasp");
+                           Hinhanhsanpham=jsonObject.getString("hinhanhsp");
+                           Motasanpham=jsonObject.getString("motasp");
+                           IDsanpham=jsonObject.getInt("idsanpham");
+                           mangsanpham.add(new Sanpham(ID,Tensanpham,Giasanpham,Hinhanhsanpham,Motasanpham,IDsanpham));
+                           sanphamAdapter.notifyDataSetChanged();
+
+                       } catch (JSONException e) {
+                           e.printStackTrace();
+                       }
+
+                   }
+               }
+
+           }
+       }, new Response.ErrorListener() {
+           @Override
+           public void onErrorResponse(VolleyError error) {
+
+           }
+       });
+        requestQueue.add(jsonArrayRequest);
     }
     private void getdulieuloaisp() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -91,16 +131,20 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = response.getJSONObject(i);
                             id=jsonObject.getInt("id");
+
                             tenloaisp=jsonObject.getString("tenloaisp");
+                            Log.d("hieu", tenloaisp+ " ....................");
                             hinhanhloaisp=jsonObject.getString("hinhanhloaisp");
                             mangloaisp.add(new LoaiSP(id,tenloaisp,hinhanhloaisp));
-                            loaispAdapter.notifyDataSetChanged();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-                    mangloaisp.add(3,new LoaiSP(0,"Liên hệ","https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQBRW8EDnycdskgONzvnmOiEqjTRxaygjrXpy9O6SCGe2jPfCm&usqp=CAU"));
-                    mangloaisp.add(4,new LoaiSP(0,"Thông tin","https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0La2HZleKC9KaMgJatGhQgxkWyIoK4IQnyxlz0z85s4egHsdf&usqp=CAU"));
+                    mangloaisp.add(new LoaiSP(0,"Liên hệ","https://cdn-icons-png.flaticon.com/512/3300/3300409.png"));
+
+
+                    loaispAdapter.notifyDataSetChanged();
                 }
             }
         }, new Response.ErrorListener() {
@@ -155,16 +199,17 @@ public class MainActivity extends AppCompatActivity {
         navigationView=(NavigationView)findViewById(R.id.navigationview);
         listViewmanhinhchinh=(ListView)findViewById(R.id.listviewmanhinhchinh);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawerlayout);
-        mangloaisp=new ArrayList<>();
-        mangloaisp.add(0,new LoaiSP(0,"Trang Chính","https://imageog.flaticon.com/icons/png/512/25/25694.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"));
+        mangloaisp=new ArrayList<>();   // hieu roi hai cai trung nhau
+        mangloaisp.add(0,new LoaiSP(0,"Trang Chính","https://cdn-icons-png.flaticon.com/512/1147/1147086.png"));
         loaispAdapter=new LoaispAdapter(mangloaisp,getApplicationContext());
         listViewmanhinhchinh.setAdapter(loaispAdapter);
+        mangsanpham= new ArrayList<>();
+        sanphamAdapter= new SanphamAdapter(getApplicationContext(),mangsanpham);
+        recyclerViewmanhinhchinh.setAdapter(sanphamAdapter);
+
+        recyclerViewmanhinhchinh.setHasFixedSize(true);
+        recyclerViewmanhinhchinh.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
 
     }
 
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }
