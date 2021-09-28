@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         app:cardCornerRadius="4dp"
@@ -19,6 +18,7 @@
                 android:layout_height="40dp"/>
 
             <LinearLayout
+                android:gravity="center"
                 android:layout_gravity="center"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                     android:gravity="center"
                     android:text="Tên sản phẩm "
                     android:textColor="#101010"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/textviewgiasanpham"

@@ -142,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     mangloaisp.add(new LoaiSP(0,"Liên hệ","https://cdn-icons-png.flaticon.com/512/3300/3300409.png"));
+                    mangloaisp.add(new LoaiSP(0,"Thông tin","https://cdn-icons-png.flaticon.com/512/3306/3306613.png"));
+
 
 
                     loaispAdapter.notifyDataSetChanged();
