@@ -50,6 +50,8 @@ public class DonghocasioAdapter extends BaseAdapter {
         if(view == null){
             viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.dong_donghocasio,null);
+
             viewHolder.txttendonghocasio= view.findViewById(R.id.textviewdonghocasio);
             viewHolder.txtgiadonghocasio= view.findViewById(R.id.textviewgiasanpham);
             viewHolder.txtmotadonghocasio= view.findViewById(R.id.textviewmotadonghocasio);
@@ -60,15 +62,13 @@ public class DonghocasioAdapter extends BaseAdapter {
         }
         Sanpham sanpham= (Sanpham) getItem(i);
         viewHolder.txttendonghocasio.setText(sanpham.getTensanpham());
-        DecimalFormat decimalFormat= new DecimalFormat("###,###,###");
-
-       viewHolder.txtgiadonghocasio.setText("Gía :"+decimalFormat.format(sanpham.getGiasanpham()) +"Đ"  );
-       viewHolder.txtmotadonghocasio.setMaxLines(3);
+        //DecimalFormat decimalFormat= new DecimalFormat("###,###,###");
+       // viewHolder.txtgiadonghocasio.setText("Gía :"+decimalFormat.format(sanpham.getGiasanpham()) +"Đ"  );
+       viewHolder.txtmotadonghocasio.setMaxLines(2);
         viewHolder.txtmotadonghocasio.setEllipsize(TextUtils.TruncateAt.END);
         viewHolder.txtmotadonghocasio.setText(sanpham.getMotasanpham());
        Picasso.with(context).load(sanpham.getHinhanhsanpham())
-
-                .into(viewHolder.imgdonghocasio);
+               .into(viewHolder.imgdonghocasio);
         return view;
     }
 }
