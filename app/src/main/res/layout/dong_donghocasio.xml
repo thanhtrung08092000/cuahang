@@ -20,7 +20,7 @@
                 android:layout_margin="2dp"
                 android:adjustViewBounds="true"
                 android:id="@+id/imgviewdonghocasio"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="200dp"/>
             <LinearLayout
 

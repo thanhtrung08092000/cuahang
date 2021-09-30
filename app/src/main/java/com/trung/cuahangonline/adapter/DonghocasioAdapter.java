@@ -69,15 +69,15 @@ public class DonghocasioAdapter extends BaseAdapter {
         viewHolder.txttendonghocasio.setText(sanpham.getTensanpham());
 
 
-        DecimalFormat decimalFormat= new DecimalFormat("###,###,###");
-       //viewHolder.txtgiadonghocasio.setText("Giá : " + decimalFormat.format(sanpham.getGiasanpham())+ "Đ");
+        //DecimalFormat decimalFormat= new DecimalFormat("###,###,###");
+      // viewHolder.txtgiadonghocasio.setText("Giá : " + decimalFormat.format(sanpham.getGiasanpham())+ "Đ");
 
-
+        //viewHolder.txtgiadonghocasio.setText("Giá : " + (sanpham.getGiasanpham())+ "Đ");
        viewHolder.txtmotadonghocasio.setMaxLines(2);
         viewHolder.txtmotadonghocasio.setEllipsize(TextUtils.TruncateAt.END);
         viewHolder.txtmotadonghocasio.setText(sanpham.getMotasanpham());
 //ban dung co sai picaso no cu roi
-       Glide.with(context).load(sanpham.getHinhanhsanpham())
+       Picasso.with(context).load(sanpham.getHinhanhsanpham())
                .into(viewHolder.imgdonghocasio);
         return view;
     }
