@@ -57,7 +57,7 @@ public class DonghocasioAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.dong_donghocasio,parent,false);
 
             viewHolder.txttendonghocasio= view.findViewById(R.id.textviewdonghocasio);
-            viewHolder.txtgiadonghocasio= view.findViewById(R.id.textviewgiasanpham);
+            viewHolder.txtgiadonghocasio= view.findViewById(R.id.textviewgiadonghocasio);
             viewHolder.txtmotadonghocasio= view.findViewById(R.id.textviewmotadonghocasio);
             viewHolder.imgdonghocasio= view.findViewById(R.id.imgviewdonghocasio);
             view.setTag(viewHolder);
@@ -69,8 +69,8 @@ public class DonghocasioAdapter extends BaseAdapter {
         viewHolder.txttendonghocasio.setText(sanpham.getTensanpham());
 
 
-        //DecimalFormat decimalFormat= new DecimalFormat("###,###,###");
-      // viewHolder.txtgiadonghocasio.setText("Giá : " + decimalFormat.format(sanpham.getGiasanpham())+ "Đ");
+        DecimalFormat decimalFormat= new DecimalFormat("###,###,###");
+       viewHolder.txtgiadonghocasio.setText("Giá : " + decimalFormat.format(sanpham.getGiasanpham())+ "Đ");
 
         //viewHolder.txtgiadonghocasio.setText("Giá : " + (sanpham.getGiasanpham())+ "Đ");
        viewHolder.txtmotadonghocasio.setMaxLines(2);
