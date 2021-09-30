@@ -195,12 +195,12 @@ public class DonghoCasioActivity extends AppCompatActivity {
         footerView = inflater.inflate(R.layout.progressbar,null);
         myHandler = new MyHandler();
     }
-    public class MyHandler extends Handler{
+    public class MyHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case 0:
-                   lvdhcasio.addFooterView(footerView);
+                    lvdhcasio.addFooterView(footerView);
                     break;
                 case 1:
                     GetData(++page); //tang bien page len 1 roi moi thuc hien function
@@ -225,5 +225,4 @@ public class DonghoCasioActivity extends AppCompatActivity {
             super.run();
         }
     }
-
 }
