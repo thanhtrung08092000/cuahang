@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.trung.cuahangonline.R;
+import com.trung.cuahangonline.model.Giohang;
 import com.trung.cuahangonline.model.Sanpham;
 
 import java.text.DecimalFormat;
@@ -45,7 +46,44 @@ public class Chitietsanpham extends AppCompatActivity {
         ActionToolBar();
         getdatafromrecyclerview();
         CatchEventSpinner();
+        EventButton();
 
+    }
+
+    private void EventButton() {
+        btnDatMua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(MainActivity.manggiohang.size()>0){
+                    int sl = Integer.parseInt(spinner.getSelectedItem().toString());
+                    boolean exists = false;
+
+                    for (int i=0; i< MainActivity.manggiohang.size(); i++) {
+                        if (MainActivity.manggiohang.get(i).getIdsp() == id) {
+                            MainActivity.manggiohang.get(i).setSoluongsp(MainActivity.manggiohang.get(i).getSoluongsp() + sl);
+                            if (MainActivity.manggiohang.get(i).getSoluongsp() > 10) {
+                                MainActivity.manggiohang.get(i).setSoluongsp(10);
+
+                            }
+                            MainActivity.manggiohang.get(i).setGiasp(MainActivity.manggiohang.get(i).getSoluongsp()*Giachitiet);
+                            exists = true;
+                        }
+                    }
+                    if (exists==false) {
+                        int soLuong = Integer.parseInt(spinner.getSelectedItem().toString());
+                        long Giamoi = soLuong * Giachitiet;
+                        MainActivity.manggiohang.add(new Giohang(id,Tenchitiet,Giamoi,Hinhanhchitiet,soLuong));
+
+                    }
+                    }else {
+                    int soLuong = Integer.parseInt(spinner.getSelectedItem().toString());
+                    long Giamoi = soLuong * Giachitiet;
+                    MainActivity.manggiohang.add(new Giohang(id,Tenchitiet,Giamoi,Hinhanhchitiet,soLuong));
+                }
+                Intent intent = new Intent(getApplicationContext(), com.trung.cuahangonline.activity.Giohang.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void Anhxa() {

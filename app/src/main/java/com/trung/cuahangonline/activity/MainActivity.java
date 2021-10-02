@@ -30,6 +30,7 @@ import com.squareup.picasso.Picasso;
 import com.trung.cuahangonline.R;
 import com.trung.cuahangonline.adapter.LoaispAdapter;
 import com.trung.cuahangonline.adapter.SanphamAdapter;
+import com.trung.cuahangonline.model.Giohang;
 import com.trung.cuahangonline.model.LoaiSP;
 import com.trung.cuahangonline.model.Sanpham;
 import com.trung.cuahangonline.utils.CheckConnection;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Sanpham> mangsanpham;
     SanphamAdapter sanphamAdapter;
 
-
+    public static ArrayList<Giohang> manggiohang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -282,6 +283,13 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerViewmanhinhchinh.setHasFixedSize(true);
         recyclerViewmanhinhchinh.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+
+        //Cap phat vung nho cho mang GioHang
+        if (manggiohang == null){
+            manggiohang = new ArrayList<>();
+        }else {
+
+        }
 
     }
 

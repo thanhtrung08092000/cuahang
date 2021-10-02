@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cuahangonline">
         <activity
+            android:name=".activity.Giohang"
+            android:exported="true" />
+        <activity
             android:name=".activity.Chitietsanpham"
             android:exported="true" />
         <activity
