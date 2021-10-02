@@ -80,7 +80,7 @@ public class GiohangAdapter extends BaseAdapter {
         Glide.with(context).load(gioHang.getHinhsp())
                 .into(viewHolder.imgGioHang);
 
-        viewHolder.btnplus.setText(gioHang.getSoluongsp() + "");
+        viewHolder.btnvalues.setText(gioHang.getSoluongsp() + "");
 
         return view;
     }
