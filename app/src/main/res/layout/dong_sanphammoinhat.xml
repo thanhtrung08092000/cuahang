@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="2dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp" >
@@ -26,7 +26,7 @@
                 android:layout_gravity="center"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="260dp">
+                android:layout_height="240dp">
 
 
 

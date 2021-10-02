@@ -13,6 +13,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -26,8 +28,10 @@ import com.android.volley.VolleyError;
 
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.tabs.TabLayout;
 import com.trung.cuahangonline.R;
 import com.trung.cuahangonline.adapter.DonghocasioAdapter;
+import com.trung.cuahangonline.model.Giohang;
 import com.trung.cuahangonline.model.Sanpham;
 import com.trung.cuahangonline.utils.CheckConnection;
 import com.trung.cuahangonline.utils.Server;
@@ -51,6 +55,7 @@ public class DonghoCasioActivity extends AppCompatActivity {
     View footerView;
     boolean isLoading = false;
     MyHandler myHandler;
+
     Boolean limitData = false; //xac nhan da het du lieu
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,7 @@ public class DonghoCasioActivity extends AppCompatActivity {
         Anhxa();
 
         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+
             GetIdLoaisp();
             ActionToolbar();
             GetData(page);
@@ -70,6 +76,26 @@ public class DonghoCasioActivity extends AppCompatActivity {
         }
         
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menushoppingcart,menu);
+        //MenuItem itemSearch = menu.findItem(R.id.mnuSearch);
+        //itemSearch.setVisible(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent = new Intent(getApplicationContext(), Giohang.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void LoadMoreData() {
 

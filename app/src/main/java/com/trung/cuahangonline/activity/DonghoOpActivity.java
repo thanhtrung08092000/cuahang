@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -25,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import com.trung.cuahangonline.R;
 import com.trung.cuahangonline.adapter.DonghocasioAdapter;
 import com.trung.cuahangonline.adapter.DonghoopAdapter;
+import com.trung.cuahangonline.model.Giohang;
 import com.trung.cuahangonline.model.Sanpham;
 import com.trung.cuahangonline.utils.CheckConnection;
 import com.trung.cuahangonline.utils.Server;
@@ -65,7 +68,23 @@ public class DonghoOpActivity extends AppCompatActivity {
             finish();
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menushoppingcart,menu);
+        //MenuItem itemSearch = menu.findItem(R.id.mnuSearch);
+        //itemSearch.setVisible(false);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent = new Intent(getApplicationContext(), Giohang.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void Anhxa() {
         toolbardhop = (Toolbar) findViewById(R.id.toolbardonghoop);
         lvdhop= (ListView) findViewById(R.id.listviewdonghoop);

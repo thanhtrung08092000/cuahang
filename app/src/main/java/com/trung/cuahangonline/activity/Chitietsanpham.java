@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
-import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.trung.cuahangonline.R;
 import com.trung.cuahangonline.model.Giohang;
@@ -44,10 +44,27 @@ public class Chitietsanpham extends AppCompatActivity {
         setContentView(R.layout.activity_chi_tiet_san_pham);
         Anhxa();
         ActionToolBar();
-        getdatafromrecyclerview();
+        getInformation();
         CatchEventSpinner();
         EventButton();
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menushoppingcart,menu);
+        //MenuItem itemSearch = menu.findItem(R.id.mnuSearch);
+        //itemSearch.setVisible(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent = new Intent(getApplicationContext(),Giohang.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void EventButton() {
@@ -97,24 +114,23 @@ public class Chitietsanpham extends AppCompatActivity {
     }
 
 
-    public void getdatafromrecyclerview(){
+    public void getInformation(){
 
-        Intent intent=getIntent();
-        if(intent.getExtras()!=null){
-            Sanpham sanPham=(Sanpham) intent.getSerializableExtra("thongtinsanpham");
-            id=sanPham.getID();
-            Tenchitiet=sanPham.getTensanpham();
-            Giachitiet=sanPham.getGiasanpham();
-            Hinhanhchitiet=sanPham.getHinhanhsanpham();
-            Motachitiet=sanPham.getMotasanpham();
-            Idsanpham = sanPham.getIDsanpham();
+           // Sanpham sanpham=(Sanpham) getIntent().getSerializableExtra("thongtinsanpham");
+            Sanpham sanpham = (Sanpham) getIntent().getSerializableExtra("thongtinsanpham");
+            id=sanpham.getID();
+            Tenchitiet=sanpham.getTensanpham();
+            Giachitiet=sanpham.getGiasanpham();
+            Hinhanhchitiet=sanpham.getHinhanhsanpham();
+            Motachitiet=sanpham.getMotasanpham();
+            Idsanpham = sanpham.getIDsanpham();
             txtTenSP.setText(Tenchitiet);
             DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
             txtGiaSP.setText("Giá: "+decimalFormat.format(Giachitiet)+" Đ");
             txtMoTaSP.setText(Motachitiet);
-            Glide.with(getApplicationContext()).load(Hinhanhchitiet)
+            Picasso.with(getApplicationContext()).load(Hinhanhchitiet)
                     .into(imgChiTietSanPham);
-        }
+
     }
     private void CatchEventSpinner() {
         Integer[] soluong = new Integer[]{1,2,3,4,5,6,7,8,9,10};
@@ -135,4 +151,4 @@ public class Chitietsanpham extends AppCompatActivity {
 
     }
 
-            }
+}

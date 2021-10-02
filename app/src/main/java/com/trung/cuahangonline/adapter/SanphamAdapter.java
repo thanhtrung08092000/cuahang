@@ -1,6 +1,7 @@
 package com.trung.cuahangonline.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 import com.trung.cuahangonline.R;
+import com.trung.cuahangonline.activity.Chitietsanpham;
 import com.trung.cuahangonline.model.Sanpham;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ItemHolder> {
@@ -59,6 +60,18 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ItemHold
             imghinhsanpham = itemView.findViewById(R.id.imgviewsanpham);
             txtgiasanpham = itemView.findViewById(R.id.textviewgiasanpham);
             txttensanpham = itemView.findViewById(R.id.textviewtensanpham);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, Chitietsanpham.class);
+                    intent.putExtra("thongtinsanpham",arraysanpham.get(getLayoutPosition()));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    // CheckConnection.ShowToast_Short(context,sanphamArrayList.get(getLayoutPosition()).getTensp());
+                    context.startActivity(intent);
+
+                }
+            });
 
         }
 

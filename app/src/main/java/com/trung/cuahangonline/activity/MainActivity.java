@@ -1,17 +1,20 @@
 package com.trung.cuahangonline.activity;
 
-import androidx.activity.result.contract.ActivityResultContracts;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -26,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
+
 import com.squareup.picasso.Picasso;
 import com.trung.cuahangonline.R;
 import com.trung.cuahangonline.adapter.LoaispAdapter;
@@ -74,12 +78,34 @@ public class MainActivity extends AppCompatActivity {
             getdulieusanphammoinhat();
             CatchOnitemListView();
 
+
         }
         else{
             CheckConnection.showToast_short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
             finish();
         }
     }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menushoppingcart,menu);
+        //MenuItem itemSearch = menu.findItem(R.id.mnuSearch);
+        //itemSearch.setVisible(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent = new Intent(getApplicationContext(),Giohang.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void CatchOnitemListView() {
         listViewmanhinhchinh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -152,8 +178,6 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         JsonArrayRequest jsonArrayRequest =new JsonArrayRequest(Server.duongdansanphammoinhat, new Response.Listener<JSONArray>() {
 
-
-           @SuppressLint("NotifyDataSetChanged")
            @Override
            public void onResponse(JSONArray response) {
                if(response!=null)//neu du lieu json ton tai
@@ -279,11 +303,11 @@ public class MainActivity extends AppCompatActivity {
         listViewmanhinhchinh.setAdapter(loaispAdapter);
         mangsanpham= new ArrayList<>();
         sanphamAdapter= new SanphamAdapter(getApplicationContext(),mangsanpham);
-        recyclerViewmanhinhchinh.setAdapter(sanphamAdapter);
+
 
         recyclerViewmanhinhchinh.setHasFixedSize(true);
         recyclerViewmanhinhchinh.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
-
+        recyclerViewmanhinhchinh.setAdapter(sanphamAdapter);
         //Cap phat vung nho cho mang GioHang
         if (manggiohang == null){
             manggiohang = new ArrayList<>();
@@ -292,5 +316,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+
 
 }
