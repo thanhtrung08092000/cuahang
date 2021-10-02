@@ -51,7 +51,7 @@ public class Chitietsanpham extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menushoppingcart,menu);
+        getMenuInflater().inflate(R.menu.menu,menu);
         //MenuItem itemSearch = menu.findItem(R.id.mnuSearch);
         //itemSearch.setVisible(false);
         return true;
@@ -61,7 +61,7 @@ public class Chitietsanpham extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menugiohang:
-                Intent intent = new Intent(getApplicationContext(),Giohang.class);
+                Intent intent = new Intent(getApplicationContext(), com.trung.cuahangonline.activity.Giohang.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

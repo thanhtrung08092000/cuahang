@@ -38,7 +38,7 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ItemHold
         holder.txttensanpham.setText(sanpham.getTensanpham());
         DecimalFormat decimalFormat= new DecimalFormat("###,###,###");
 
-        holder.txtgiasanpham.setText("Gía :"+decimalFormat.format(sanpham.getGiasanpham()) +"Đ"  );
+        holder.txtgiasanpham.setText(" "+decimalFormat.format(sanpham.getGiasanpham()) +"Đ"  );
         Picasso.with(context).load(sanpham.getHinhanhsanpham())
 
                 .into(holder.imghinhsanpham);
@@ -65,7 +65,7 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ItemHold
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, Chitietsanpham.class);
-                    intent.putExtra("thongtinsanpham",arraysanpham.get(getLayoutPosition()));
+                    intent.putExtra("thongtinsanpham",arraysanpham.get(getAdapterPosition()));
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     // CheckConnection.ShowToast_Short(context,sanphamArrayList.get(getLayoutPosition()).getTensp());
                     context.startActivity(intent);

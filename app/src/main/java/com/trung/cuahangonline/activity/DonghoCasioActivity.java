@@ -28,7 +28,6 @@ import com.android.volley.VolleyError;
 
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.tabs.TabLayout;
 import com.trung.cuahangonline.R;
 import com.trung.cuahangonline.adapter.DonghocasioAdapter;
 import com.trung.cuahangonline.model.Giohang;
@@ -80,7 +79,7 @@ public class DonghoCasioActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menushoppingcart,menu);
+        getMenuInflater().inflate(R.menu.menu,menu);
         //MenuItem itemSearch = menu.findItem(R.id.mnuSearch);
         //itemSearch.setVisible(false);
         return true;
@@ -90,7 +89,7 @@ public class DonghoCasioActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menugiohang:
-                Intent intent = new Intent(getApplicationContext(), Giohang.class);
+                Intent intent = new Intent(getApplicationContext(), com.trung.cuahangonline.activity.Giohang.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

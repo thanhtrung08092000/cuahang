@@ -1,11 +1,10 @@
 package com.trung.cuahangonline.activity;
 
-import androidx.annotation.RequiresApi;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.icu.text.DecimalFormat;
-import android.os.Build;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +13,8 @@ import android.widget.TextView;
 
 import com.trung.cuahangonline.R;
 import com.trung.cuahangonline.adapter.GiohangAdapter;
+
+import java.text.DecimalFormat;
 
 public class Giohang extends AppCompatActivity {
     ListView lvgiohang;
@@ -28,9 +29,21 @@ public class Giohang extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_giohang);
         Anhxa();
-        actionToolbar();
+        ActionToolbar();
         CheckData();
+        EventUntil();
     }
+
+    public static void EventUntil() {
+        long tongtien=0;
+        for(int i=0;i<MainActivity.manggiohang.size();i++){
+            tongtien+=MainActivity.manggiohang.get(i).getGiasp();
+        }
+        java.text.DecimalFormat decimalFormat= new DecimalFormat("###,###,###");
+
+       txttongtien.setText(decimalFormat.format(tongtien) +"Đ"  );
+    }
+
 
     private void CheckData() {
         if (MainActivity.manggiohang.size()<=0){
@@ -43,17 +56,8 @@ public class Giohang extends AppCompatActivity {
             lvgiohang.setVisibility(View.VISIBLE);
         }
     }
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void EventUtil() {
-        long tongtien = 0;
-        for (int i=0;i<MainActivity.manggiohang.size();i++){
-            tongtien+=MainActivity.manggiohang.get(i).getGiasp();
-        }
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        txttongtien.setText(decimalFormat.format(tongtien)+" Đ");
-    }
 
-    private void actionToolbar() {
+    private void ActionToolbar() {
         setSupportActionBar(toolbargiohang);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbargiohang.setNavigationOnClickListener(new View.OnClickListener() {
@@ -67,7 +71,7 @@ public class Giohang extends AppCompatActivity {
     private void Anhxa() {
         lvgiohang = findViewById(R.id.listviewgiohang);
         txtthongbao = findViewById(R.id.textviewthongbao);
-        txttongtien = findViewById(R.id.txtGiaGioHang);
+        txttongtien = findViewById(R.id.textviewtongtien);
         btnthanhtoan = findViewById(R.id.buttonthanhtoangiohang);
         btntieptucmuahang = findViewById(R.id.buttontieptucmuahang);
         toolbargiohang = findViewById(R.id.toolbargiohang);
