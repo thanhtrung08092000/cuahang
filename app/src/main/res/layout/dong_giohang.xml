@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:weightSum="10"
     android:layout_width="match_parent"
@@ -43,40 +44,54 @@
             android:layout_height="wrap_content"
             android:text="giá hàng"
             android:textColor="#f20"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
         <LinearLayout
+
             android:gravity="center"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+
             <Button
+                android:background="?android:attr/selectableItemBackground"
+                android:textColor="#121111"
+                android:id="@+id/buttonminus"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:focusable="false"
                 android:text="-"
-                android:id="@+id/buttonminus"
-                android:layout_marginTop="5dp"
+
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"/>
+                app:rippleColor="#ECDEDE" />
+
             <Button
+                android:background="?android:attr/selectableItemBackground"
+                android:id="@+id/buttonvalues"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
 
                 android:focusable="false"
-                android:textStyle="bold"
                 android:text="1"
-                android:id="@+id/buttonvalues"
-                android:layout_marginTop="5dp"
+
+                android:textColor="#121111"
                 android:textSize="30sp"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold" />
+
             <Button
+                android:background="?android:attr/selectableItemBackground"
+                android:textColor="#121111"
+                android:id="@+id/butonplus"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:focusable="false"
                 android:text="+"
-                android:id="@+id/butonplus"
-                android:layout_marginTop="5dp"
                 android:textSize="30sp"
-                android:textStyle="bold"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 

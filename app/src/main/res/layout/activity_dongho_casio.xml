@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.DonghoCasioActivity">
     <androidx.appcompat.widget.Toolbar
-        android:background="#B71C1C"
+        android:background="#03A9F4"
         app:titleTextColor="#FFFFFF"
         app:title="Đồng hồ Casio "
         android:layout_width="match_parent"

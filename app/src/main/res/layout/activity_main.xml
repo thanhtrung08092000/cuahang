@@ -17,7 +17,8 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbarmanhinhchinh"
                 app:title="Trang chính"
-                android:background="#4665ce"
+                app:titleTextColor="#ffffff"
+                android:background="#2196F3"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
             </androidx.appcompat.widget.Toolbar>
@@ -27,7 +28,7 @@
                 android:layout_height="140dp">
             </ViewFlipper>
             <LinearLayout
-                android:background="#5992d2"
+                android:background="#03A9F4"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

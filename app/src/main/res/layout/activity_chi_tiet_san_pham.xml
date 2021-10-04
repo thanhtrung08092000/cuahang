@@ -9,9 +9,10 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarchitietsanpham"
-        android:background="#31C547"
+        android:background="#03A9F4"
         app:title="Chi tiết sản phẩm"
         android:layout_width="match_parent"
+        app:titleTextColor="#ffffff"
         android:layout_height="?attr/actionBarSize">
     </androidx.appcompat.widget.Toolbar>
 
@@ -94,7 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:textColor="#34B47C"
+            android:textColor="#F44336"
             android:layout_marginTop="5dp"
             android:textSize="30sp"
             android:text="Mô tả chi tiết sản phẩm"

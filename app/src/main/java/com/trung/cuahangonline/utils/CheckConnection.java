@@ -25,4 +25,8 @@ public class CheckConnection {
     public static void showToast_short(Context context,String thongbao){
         Toast.makeText(context,thongbao,Toast.LENGTH_SHORT).show();
     }
+
+    public static void ShowToast_Short(Context context,String thongbao) {
+        Toast.makeText(context,thongbao,Toast.LENGTH_SHORT).show();
+    }
 }
