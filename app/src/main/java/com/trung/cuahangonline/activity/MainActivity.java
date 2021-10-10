@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
-                            Intent intent = new Intent(MainActivity.this,ThongtinActivity.class);
+                            Intent intent = new Intent(MainActivity.this,ThongtindiachiActivity.class);
                             intent.putExtra("idloaisanpham", mangloaisp.get(i).getId());
                             startActivity(intent);
                         }else {
@@ -230,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
                             tenloaisp=jsonObject.getString("tenloaisp");
                             Log.d("hieu", tenloaisp+ " ....................");
-                            hinhanhloaisp=jsonObject.getString("hinhanhloaisp");
+                           // hinhanhloaisp=jsonObject.getString("hinhanhloaisp");
                             mangloaisp.add(new LoaiSP(id,tenloaisp,hinhanhloaisp));
 
                         } catch (JSONException e) {
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     mangloaisp.add(new LoaiSP(0,"Liên hệ","https://cdn-icons-png.flaticon.com/512/3300/3300409.png"));
                     mangloaisp.add(new LoaiSP(0,"Thông tin","https://cdn-icons-png.flaticon.com/512/3306/3306613.png"));
-
+                   
 
 
                     loaispAdapter.notifyDataSetChanged();
