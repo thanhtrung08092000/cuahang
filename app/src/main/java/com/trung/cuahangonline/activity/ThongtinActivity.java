@@ -5,6 +5,7 @@ import static com.trung.cuahangonline.utils.Server.duongdandonhang;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,10 @@ import com.android.volley.toolbox.Volley;
 import com.trung.cuahangonline.R;
 import com.trung.cuahangonline.utils.CheckConnection;
 import com.trung.cuahangonline.utils.Server;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,8 +68,55 @@ public class ThongtinActivity extends AppCompatActivity {
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     StringRequest stringRequest= new StringRequest(Request.Method.POST, duongdandonhang, new Response.Listener<String>() {
                         @Override
-                        public void onResponse(String response) {
-                            Log.d("madonhang",response);
+                        public void onResponse(String madonhang) {
+                            Log.d("madonhang",madonhang);
+                            if( Integer .parseInt(madonhang) >0){
+                                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                                StringRequest request= new StringRequest(Request.Method.POST, Server.duongdanchitietdonhang, new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        if(response.equals("1")){
+                                            MainActivity.manggiohang.clear();
+                                            CheckConnection.showToast_short(getApplicationContext(),"Bạn đã thêm dữ liệu giỏ hàng thành công ");
+                                            Intent  intent = new Intent(getApplicationContext(),MainActivity.class);
+                                            startActivity(intent);
+                                            CheckConnection.showToast_short(getApplicationContext(),"Mời bạn tiếp tục mua hàng  ");
+                                        }else {
+                                            CheckConnection.showToast_short(getApplicationContext()," Dữ liệu giỏ hàng bị lỗi  ");
+                                        }
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+
+                                    }
+                                }){
+                                    @Override
+                                    protected Map<String, String> getParams() throws AuthFailureError {
+                                        JSONArray jsonArray = new JSONArray();
+                                        for ( int i= 0 ; i<MainActivity.manggiohang.size(); i++){
+                                            JSONObject jsonObject = new JSONObject();
+                                            try {
+                                                jsonObject.put("madonhang", madonhang);
+                                                jsonObject.put("masanpham", MainActivity.manggiohang.get(i).getIdsp());
+                                                jsonObject.put("tensanpham",MainActivity.manggiohang.get(i).getTensp());
+                                                jsonObject.put("giasanpham", MainActivity.manggiohang.get(i).getGiasp());
+                                                jsonObject.put("soluongsanpham", MainActivity.manggiohang.get(i).getSoluongsp());
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                            jsonArray.put(jsonObject);
+
+                                        }
+                                        HashMap<String,String> hashMap = new HashMap<String, String>();
+                                        hashMap.put("json",jsonArray.toString());
+                                        return hashMap;
+
+                                    }
+                                };
+                                    queue.add(request);
+                            }
                         }
                     }, new Response.ErrorListener() {
                         @Override

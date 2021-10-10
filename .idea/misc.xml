@@ -14,6 +14,7 @@
         <entry key="..\:/cuahang/app/src/main/res/layout/activity_dongho_casio.xml" value="0.1" />
         <entry key="..\:/cuahang/app/src/main/res/layout/activity_dongho_op.xml" value="0.1" />
         <entry key="..\:/cuahang/app/src/main/res/layout/activity_giohang.xml" value="0.17894736842105263" />
+        <entry key="..\:/cuahang/app/src/main/res/layout/activity_lienhe.xml" value="0.146875" />
         <entry key="..\:/cuahang/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/cuahang/app/src/main/res/layout/activity_thongtin.xml" value="0.1" />
         <entry key="..\:/cuahang/app/src/main/res/layout/dong_donghocasio.xml" value="0.2" />
@@ -27,7 +28,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android API 31 Platform" project-jdk-type="Android SDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
